@@ -9,19 +9,13 @@ using namespace std;
 //START OF THE CONSTRUCTORS SECTION
 //******************************************************************
 
-/*
-// Create a default BigInt with base 10.
-// This function is complete. You do not have to add anything.
-*/
 BigInt::BigInt(){
   base = 10;
   isPositive = true;
 }
 
-/*
-// Create a BigInt with a specified base.
-// This function is complete. You do not have to add anything.
-*/
+// Creates a BigInt with a specified base.
+
 BigInt::BigInt(int setbase){
     if(setbase < 2 || setbase > 36){
         throw InvalidBaseException();
@@ -31,58 +25,39 @@ BigInt::BigInt(int setbase){
 }
 
 /*
-// Destructure. You do not have to add anything.
-// This function is complete
-*/
+// Destructure. 
 BigInt::~BigInt(){}
 
 /*
-//  Create a BigInt from string.
-//  Don't forget to set the base accordingly
-//  The input string will contain
-//      - numbers (0-9) and/or 
-//      - uppercase letters (A-Z) [A=10, B=11, ... , Z=35]
-//  The input string may contain
-//      - a negative sign ('-') to signify that the number is negative.
-//  Note: char '0' = int 48 (see ASCII table)
-//  Note: char 'A' = int 65
+//  Creates a BigInt from string.
 */
 BigInt::BigInt(const string &s, int setbase){
-    if(setbase < 2 || setbase > 36){
-        throw InvalidBaseException();
-    }
+if(setbase < 2 || setbase > 36){
+throw InvalidBaseException();
+}
 
-    base = setbase;
-    
-    if(s[0] == '-')
+base = setbase;
 
-    {
-        isPositive = false;
-    }
-   
+if(s[0] == '-')
 
-  
-		if(isPositive == true)
-		{
-    for (int i = s.size() - 1; i >= 0; i--)
-		{
-        
-        if( isdigit(s[i]) )
-        {
+{
+isPositive = false;
+}
+if(isPositive == true){
+    for (int i = s.size() - 1; i >= 0; i--){
+        if( isdigit(s[i])){
             int c = (int)(s[i])-48;
             vec.push_back(c);
         }
-        else if( !isdigit(s[i]) )
-        {
+        else if( !isdigit(s[i])){
             int c = (int)(s[i])-55;
             vec.push_back(c);
         }
-		}
-		}
+     }
+}
         
 		
-		else if(isPositive == false)
-		{
+else if(isPositive == false){
     for (int i = s.size() - 1; i > 0; i--)
         {
 
@@ -99,21 +74,17 @@ BigInt::BigInt(const string &s, int setbase){
         }
         }
 
-		}
-	
+	}	
 }
 
-
 /*
-//  Create a BigInt from int (base 10).
-//  - Convert the int (base 10) input into a specified base (setbase).
-//  - Don't forget to set the base accordingly
+//  Creates a BigInt from int (base 10).
+//  - Converts the int (base 10) input into a specified base (setbase).
 //  For example:
 //     BigInt k(6,2) <- int 6 base 10 to BigInt base 2
 //          - Result:  BigInt k with value 110 (base 2)
 //     BigInt k(154,16) <- 154 base 10 to BigInt base 16
 //          - Result: BigInt k with value 9A (base 16)
-// 9 x 16 + 10 = 154
 */
 BigInt::BigInt(int input,int setbase){
     if(setbase < 2 || setbase > 36){
@@ -146,9 +117,6 @@ while (input > 0)
 /*
 //  Create a BigInt from another BigInt.
 //  This is a copy constructor.
-//  Simply call the assignment operator (=) below.
-// (You can also think of this function as the same as the assignment operator (=))
-// (but without a return statement because you are overriding the current object)
 */
 BigInt::BigInt(const BigInt &b){
     base = b.base;
@@ -181,7 +149,7 @@ BigInt & BigInt::operator = (const BigInt &b){
 /*
 // Convert to string and return the string
 // Display it in its corresponding base
-//  Note: char '0' = int 48 (see the ASCII table)
+//  Note: char '0' = int 48 
 //  Note: char 'A' = int 65
 */
 string BigInt::to_string(){
@@ -242,10 +210,8 @@ return number;
 //  Convert BigInt to integer base 10 and return that int
 //    If BigInt >= INT_MAX, return INT_MAX.
 //    If BigInt =< INT_MIN, return INT_MIN.
-//  Note: 1. INT_MAX and INT_MIN are already defined for you
-//           in the 'climits' library.
-//        2. INT_MAX = 2147483647, INT_MIN = -2147483648
-//           therefore, INT_MIN does not equal to (-INT_MAX)
+//    INT_MAX = 2147483647, INT_MIN = -2147483648
+//
 */
 
 
@@ -298,7 +264,6 @@ if(isPositive == false)
 //     If a = b, return 0.
 //     If a < b, return -1.
 //     If a > b, return 1.
-//  See the HINT below
 */
 int BigInt::compare(const BigInt &b) const{
     if(base != b.base){
@@ -471,7 +436,6 @@ bool operator < (const BigInt &a, const BigInt &b){
 // 1. Create a copy of a
 // 2. Call += operator on the copy and b
 // 3. Return the copy
-// Note: Should take you exactly 3 lines of code
 */
 BigInt operator + (const  BigInt &a, const BigInt &b){
 
@@ -498,7 +462,7 @@ const BigInt & BigInt::operator += (const BigInt &b){
 	vector<int>greater;
 	vector<int> sum;
 	int carry = 0;
-  int holder = 0;
+        int holder = 0;
 	int c;
 	int a = vec.size();
 	int e = b.vec.size();
@@ -586,19 +550,7 @@ const BigInt & BigInt::operator += (const BigInt &b){
 	}
 
 	vec.clear();
-  vec = sum;
-	// if(isPositive == true)
-	// {
-	//   vec = sum;
-	// }
-	// else
-	// {
-	// 	int s = sum.size()-1;
-	// 	sum[s] = sum[s] * -1;
-	// 	vec = sum;
-	// }
-
-
+        vec = sum;
 	}
 
 	else{
@@ -640,7 +592,7 @@ const BigInt & BigInt::operator += (const BigInt &b){
 	
 	}
 	}
-int sizec = vec.size() - 1;
+        int sizec = vec.size() - 1;
 	if(vec[sizec] == 0)
 	{
 		isPositive = true;
@@ -656,7 +608,6 @@ int sizec = vec.size() - 1;
 // 1. Create a copy of a
 // 2. Call -= operator on the copy and b
 // 3. Return the copy
-// Note: Should take you exactly 3 lines of code
 */
 BigInt operator - (const  BigInt &a, const BigInt & b){
 
@@ -673,7 +624,6 @@ BigInt operator - (const  BigInt &a, const BigInt & b){
 //==================
 //  Subtraction assignment operator.
 //    i.e., a -= b
-//  Note: Think of base cases (e.g., subtract by itself)
 */
 const BigInt & BigInt::operator -= (const BigInt &b){
     if(base != b.base){
@@ -791,7 +741,6 @@ const BigInt & BigInt::operator -= (const BigInt &b){
 
 		else if(isPositive == false && b.isPositive == false)
 			{
-				
 					int count = 0;
 					int sizes = smaller.size();
 			for(int i = 0; i < limit; i++)
@@ -823,8 +772,6 @@ const BigInt & BigInt::operator -= (const BigInt &b){
 					sub.push_back(smaller[j]);
 				}
 			}
-			
-
 			vec.clear();
 			vec = sub;
 			if (ahold < b)
@@ -847,11 +794,7 @@ const BigInt & BigInt::operator -= (const BigInt &b){
 					vec.pop_back();
 					i--;
 				}
-			} 
-			
-			
-
-			
+			} 	
 		return *this;
 }
 
@@ -862,13 +805,12 @@ const BigInt & BigInt::operator -= (const BigInt &b){
 // 1. Create a copy of a
 // 2. Call *= operator on the copy and b
 // 3. Return the copy
-// Note: Should take you exactly 3 lines of code
 */
 BigInt operator * (const  BigInt &a, const BigInt & b){
 
     BigInt copya = a;
-		copya *= b;
-		return copya;
+    copya *= b;
+    return copya;
 
 	
 }
@@ -882,25 +824,11 @@ BigInt operator * (const  BigInt &a, const BigInt & b){
 //  Multiplication assignment operator.
 //    i.e., a *= b
 //  Implement Long Multiplication
-//  Note: What are the base cases?? (e.g., multiply by 0)
 */
 const BigInt & BigInt::operator *= (const BigInt &b){
     if(base != b.base){
         throw DiffBaseException();
     }
-    
-	/*	BigInt copya;
-		copya.base = base;
-		copya.vec = vec;
-		copya.isPositive = isPositive;
-		vector<int> greater;
-		vector<int> smaller;
-		int ss, bs;
-		int carry = 0;
-		int holder = 0;
-		BigInt mult;
-		BigInt multsum;
-		*/
 		int sizevec = vec.size() - 1;
 		int sizebvec = b.vec.size() - 1;	
 		BigInt total(base);
@@ -933,11 +861,6 @@ for(int i = 0; i < bsize; i++)
 		for(int j = 0; j < asize; j++)
 		{
 			product = (b.vec[i] * vec[j]) + carry;
-			//carry /= product;
-				/*if(carry != 0)
-				{	
-					product %= 10;
-				}*/
 				temp.vec.push_back(product);
 		}
 			if(carry != 0)
@@ -963,10 +886,7 @@ for(int i = 0; i < bsize; i++)
 		
 
 return *this;
-		}
-		 
-
-		
+		}	
 
 /*
 //======================
@@ -975,13 +895,12 @@ return *this;
 // 1. Create a copy of a
 // 2. Call /= operator on the copy and b
 // 3. Return the copy
-// Note: Should take you exactly 3 lines of code
 */
 BigInt operator / (const  BigInt &a, const BigInt & b){
 
     BigInt copya = a;
-		copya /= b;
-		return copya;
+    copya /= b;
+    return copya;
   
 }
 
@@ -991,7 +910,7 @@ BigInt operator / (const  BigInt &a, const BigInt & b){
 // MEMBER function
 //==================
 //  Division assignment operator.
-//    - Call 'divisionMain' to get the quotient;
+//    - Calls 'divisionMain' to get the quotient;
 */
 const BigInt & BigInt::operator /= (const BigInt &b){
     if(base != b.base){
@@ -1008,15 +927,13 @@ const BigInt & BigInt::operator /= (const BigInt &b){
 		return *this;
 
 }
-
-
 /*
 //==================
 // MEMBER function
 //==================
 //  Modulus assignment operator.
 //    - Call 'divisionMain' to get the remainder;
-//    - Note: remainder takes the sign of the dividend.
+//    - remainder takes the sign of the dividend.
 */
 const BigInt & BigInt::operator %= (const BigInt &b){
     if(base != b.base){
@@ -1037,10 +954,9 @@ const BigInt & BigInt::operator %= (const BigInt &b){
 
 /*
 //  Main function for the Division (/=) and Modulus (%=) operators.
-//     - Compute (q)uotient and (r)emainder
-//     - Implement Long Division
-//  Note: 1. This should behave like integer division
-//        2. What are the base cases?? (e.g., div by itself)
+//     - Computes (q)uotient and (r)emainder
+//     - Implements Long Division
+//  Note: 1. behaves like integer division
 */
 void BigInt::divisionMain(const BigInt &b, BigInt &quotient, BigInt &remainder){
 
@@ -1071,16 +987,15 @@ void BigInt::divisionMain(const BigInt &b, BigInt &quotient, BigInt &remainder){
         //same signs give positive.
         resultedSign = true;
     }
-		int cpr = compare(copyb);//avoid calling two times.
+    int cpr = compare(copyb);//avoid calling two times.
     //------------------------------------
     //divide by number > a (like 2/10 = 0, remainder = dividend)
     if(cpr < 0){
-        //q = 0, r = a
         //remainder = dividend, use the temp sign
         remainder = *this;
         remainder.isPositive = thistempsign;
-				BigInt zero(0,base);
-				quotient = zero;
+	BigInt zero(0,base);
+	quotient = zero;
         return;
     }
     //------------------------------------
@@ -1088,8 +1003,8 @@ void BigInt::divisionMain(const BigInt &b, BigInt &quotient, BigInt &remainder){
     if(cpr == 0){
         //remainder is still 0.
         BigInt one(1,base);
-				BigInt zero(0,base);
-				remainder = zero;
+	BigInt zero(0,base);
+	remainder = zero;
         quotient = one;
         quotient.isPositive = resultedSign;
         return;   
@@ -1099,18 +1014,12 @@ void BigInt::divisionMain(const BigInt &b, BigInt &quotient, BigInt &remainder){
     quotient.vec.clear();
     remainder.vec.clear();
     //Normal case - Long Division
-
-
-
-		
-	
 			if(isPositive != b.isPositive)
 			{
 				quotient.isPositive = false;
 			}
 			
 		BigInt dseq(vec[pos],base);
-		// dseq.vec.push_back();
 		while(dseq < copyb) //creating first digits of dseq
 		{
 			pos--;
@@ -1177,62 +1086,8 @@ void BigInt::divisionMain(const BigInt &b, BigInt &quotient, BigInt &remainder){
 			quotient.vec.push_back(0);
 			quotient.isPositive = true;
 		}
-
-	/*	if(acheck.vec[0] == 0)
-		{
-			int i = remainder.vec.size() - 1;
-			while(i>0)
-			{
-				remainder.vec.pop_back();
-				i--;
-			}
-			remainder.vec[0] = 0;
-			remainder.isPositive = true;
-			} */ 
 }
 			
-
-		 
-	
-/*
-		if(copya.vec[empty] == 0) 
-			{
-				int i = quotient.vec.size() - 1;
-				while(i>0)
-				{
-					quotient.vec.pop_back();
-					i--;
-				}
-				quotient.vec[0] = 0;
-				isPositive = true;
-			} */
-		
-		
-/*if(isPositive != b.isPositive)
-{
-	quotient.isPositive = false;
-}*/
-		
-/*if(remainder.vec.empty())
-		{
-			remainder = 0;
-			remainder.isPositive = true;
-		}
-		else
-		{
-			remainder.isPositive = isPositive;
-		}
-
-		if(isPositive != b.isPositive)
-		{
-			quotient.isPositive = false;
-		}
-		else
-		{
-			quotient.isPositive = true;
-		} */
-
-
 /*
 //======================
 // NON-MEMBER function
@@ -1240,7 +1095,6 @@ void BigInt::divisionMain(const BigInt &b, BigInt &quotient, BigInt &remainder){
 // 1. Create a copy of a
 // 2. Call %= operator on the copy and b
 // 3. Return the copy
-// Note: Should take you exactly 3 lines of code
 */
 BigInt operator % (const  BigInt &a, const BigInt & b){
 
@@ -1259,28 +1113,20 @@ BigInt operator % (const  BigInt &a, const BigInt & b){
 // 1. Create a copy of a
 // 2. Call the 'exponentiation' function on the copy and b
 // 3. Return the copy
-// Note: Should take you exactly 3 lines of code
 */
 BigInt pow(const  BigInt &a, const BigInt & b){
 
     BigInt copya = a;
 	  copya.exponentiation(b);
 		return copya;
-
-	
-
-  
-
 }
-
 /*
 //==================
 // MEMBER function
 //==================
 //  Exponentiation assignment function.
 //     - i.e., a.exponentiation(b);
-// Note: 1. implement Exponentiation by Squaring (see the writeup)
-//       2. b should be treated as BigInt, not int or other data type.
+// Note: 1. implements Exponentiation by Squaring
 */
 const BigInt & BigInt::exponentiation(const BigInt &b){
     if(base != b.base){
@@ -1301,8 +1147,6 @@ const BigInt & BigInt::exponentiation(const BigInt &b){
 		one.vec.push_back(1);
 		BigInt bases(base);
 		int count = 0;
-		
-
 		while(copyb > one)
 		{
 
@@ -1347,12 +1191,7 @@ const BigInt & BigInt::exponentiation(const BigInt &b){
 			vec.clear();
 			vec.push_back(1);
 		}
-	
-		
 		return *this;
-	
-
-
 }
 
 /*
@@ -1362,15 +1201,13 @@ const BigInt & BigInt::exponentiation(const BigInt &b){
 // 1. Create a copy of a
 // 2. Call the 'modulusExp' function on the copy and b
 // 3. Return the copy
-// Note: Should take you exactly 3 lines of code
 */
 BigInt modPow(const BigInt &a, const BigInt &b, const BigInt &m){
 
     BigInt copya = a;
-		copya.modulusExp(b, m);
-		return copya;
+    copya.modulusExp(b, m);
+    return copya;
 }
-
 
 /*
 //==================
@@ -1378,9 +1215,7 @@ BigInt modPow(const BigInt &a, const BigInt &b, const BigInt &m){
 //==================
 //  Modulus Exponentiation assignment function.
 //     - i.e., a.modulusExp(b)
-// Note: 1. implement Modulus Exponentiation (see the writeup)
-//       2. b should be treated as BigInt, not int or other data type.
-// Hint: same implementation as exponentiation, but take modulus 
+// Note: 1. implements Modulus Exponentiation
 //          after every call to the *= operator.
 */
 const BigInt & BigInt::modulusExp(const BigInt &b, const BigInt &m){
@@ -1446,8 +1281,6 @@ const BigInt & BigInt::modulusExp(const BigInt &b, const BigInt &m){
 		vec.clear();
 		vec = bases.vec;
 		return *this;
-	
-
 }
 
 //******************************************************************
@@ -1456,8 +1289,6 @@ const BigInt & BigInt::modulusExp(const BigInt &b, const BigInt &m){
 
 //******************************************************************
 //START OF SANITY CHECK FUNCTIONS
-//YOU CAN USE THEM, BUT DO NOT CHANGE ANYTHING
-//THESE FUNCTIONS ARE COMPLETE.
 //******************************************************************
 void BigInt::printVecItems(){
   cout<<"[";
