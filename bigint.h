@@ -4,14 +4,6 @@
 #include <exception>
 using namespace std;
 
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-//IMPORTANT: This file is complete. 
-//			-	Do NOT add/remove anything in this file.
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-
-
 //===================================
 //BigInt class definition
 //===================================
@@ -53,7 +45,7 @@ class BigInt {
 		const BigInt & exponentiation(const BigInt &b);	//exponentiation assignment
 		const BigInt & modulusExp(const BigInt &b, const BigInt &mod);//mod exponentiation assignment
 
-		//sanity check -- no need to do anything with these
+		//sanity check 
 		void printVecItems();
 		bool getSign();
 		int getBase();
