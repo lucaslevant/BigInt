@@ -5,9 +5,6 @@ using namespace std;
 
 
 int main() {
-    //Add your own code
-    //You may comment out the example code snippets below
-  
     /*//First example
     BigInt mytest("DADCAFE", 16);
     cout<<mytest.to_string()<<endl;//should print DADCAFE
