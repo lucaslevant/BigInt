@@ -3,10 +3,6 @@
 #To run all test modes at once or decipher all messages at once.
 #./runall.sh test
 #./runall.sh decipher
-#=============================================
-#This file is complete, do not change anything!
-#=============================================
-
 if [ "$1" = "test" ]; then
 	echo "============"
 	make clean > /dev/null 2>&1
