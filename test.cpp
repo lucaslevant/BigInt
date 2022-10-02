@@ -3,16 +3,9 @@
 #include <fstream>
 using namespace std;
 
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-//IMPORTANT: This file is complete. 
-//			-	Do NOT add/remove anything in this file.
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-
 int main(int argc, char* argv[]) {
 	if (argc < 3) {
-		cout<<"\033[1;41m----Missing arguments----\033[0m"<<endl;
+	    cout<<"\033[1;41m----Missing arguments----\033[0m"<<endl;
 	    cout << "Usage: ./test <base> <mode>"<<endl;
 	    cout<<"<base>\t2, 10, or 16"<<endl;
 	    cout<<"<mode>\t0: compare, 1: convertToInt, 2: Int10ToOtherBase 3: add,"<<endl;
@@ -65,7 +58,6 @@ int main(int argc, char* argv[]) {
                 cerr<<"\033[1;31mError:\033[0m Incorrect mode input"<<endl;
                 return 1;
             }else{
-                //required for auto-graders to work!
                 mode = atoi(argv[3]);
                 file = argv[4];
             }
